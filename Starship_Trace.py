@@ -134,7 +134,7 @@ Enter Log Index: ")
             if delete_option == "0":print("Back To Main Menu");break
     log_list.close() # output list
 
-while True:
+while True: # main loop
     main_menu_list_output();menu_option = input("\nEnter Option: ")
     
     if menu_option == "0": # end session
