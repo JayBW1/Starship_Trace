@@ -1,6 +1,8 @@
 main_menu_list = ["End Session","View Logs","Record Log","Edit Log",\
 "Delete Log"]
 
+line = "-" * 80
+
 log_location_list = ["London","Birmingham","Manchester","Southampton",\
 "Edinburgh","Belfast","Newcastle"]
 def location_listing():
@@ -25,7 +27,10 @@ def view_logs():
     log_list.seek(0);log_list_read = log_list.read()
     if log_list_read == "":print("No Logs Available\n")
     else:
-        for log in enumerate(log_list_read,1):print(f"\n{log_list_read}");break
+        for i, log in enumerate(log_list_read.split(line), 1):
+            if log == "":
+                break
+            print(f"\n[{i}]\n{log}")
     log_list.close() # output list
 
 def record_log():
@@ -101,9 +106,9 @@ Enter Log Tracking Number (8 Digits): ")
             elif current_entry == "full_log":
                 full_log = f"Log Number:\t{log_number}\nLog Name:\t\
 {log_name}\nTracking:\t{log_tracking}\nLocation:\t{log_location}\nGoods:\t\t\
-{log_goods_type}\n\n"
+{log_goods_type}\n"
                 print(f"Log Recorded:\n{full_log}")
-                log_list.write(full_log)
+                log_list.write(f"{full_log}{line}")
                 log_list.close();break
 
 def edit_log():
@@ -114,7 +119,7 @@ def edit_log():
         if log_list_read == "":
             print("No Logs Available\n");break
         else:
-            for i, log in enumerate(log_list_read,1):print(f"[{i}] {log}")
+            for i, log in enumerate(log_list_read, 1):print(f"[{i}] {log}")
             delete_option = input("\nEdit Menu:\n[0] Main Menu\n\
 Enter Log Index: ")
             if delete_option == "0":print("Back To Main Menu");break
